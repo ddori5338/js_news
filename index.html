@@ -17,21 +17,13 @@
     <div class="side-menu" id="mySidenav">
         <button class="closebtn" onclick="closeNav()">&times;</button>
         <div class="side-menu-list" id="menu-list">
-            <button>Sport</button>
-            <button>Tech</button>
-            <button>World</button>
-            <button>Finance</button>
-            <button>Politics</button>
             <button>Business</button>
-            <button>Economics</button>
             <button>Entertainment</button>
-            <button>Beauty</button>
-            <button>Travel</button>
-            <button>Music</button>
-            <button>Food</button>
+            <button>General</button>
+            <button>Health</button>
             <button>Science</button>
-            <button>Gaming</button>
-            <button>Energy</button>
+            <button>Sports</button>
+            <button>Technology</button>
         </div>
     </div>
 
@@ -39,7 +31,7 @@
     <i class="fa-solid fa-magnifying-glass icon-button" onclick="openSearchBox()"></i>
         <span id="input-area">
             <input type="text" id="search-input" placeholder="search"/>
-            <button class="search-button" onclick="searchNews()">Go</button>
+            <button class="search-button" onclick="getNewsByKeyword()">Go</button>
         </span>
 
     <section class="container">
@@ -52,21 +44,15 @@
           </svg>
         </div>
         <div class="menus">
-            <button onclick="getLatestNews('Sport')">Sport</button>
-            <button onclick="getLatestNews('Tech')">Tech</button>
-            <button onclick="getLatestNews('World')">World</button>
-            <button onclick="getLatestNews('Finance')">Finance</button>
-            <button onclick="getLatestNews('Politics')">Politics</button>
-            <button onclick="getLatestNews('Business')">Business</button>
-            <button onclick="getLatestNews('Economics')">Economics</button>
-            <button onclick="getLatestNews('Entertainment')">Entertainment</button>
-            <button onclick="getLatestNews('Beauty')">Beauty</button>
-            <button onclick="getLatestNews('Travel')">Travel</button>
-            <button onclick="getLatestNews('Music')">Music</button>
-            <button onclick="getLatestNews('Food')">Food</button>
-            <button onclick="getLatestNews('Science')">Science</button>
-            <button onclick="getLatestNews('Gaming')">Gaming</button>
-            <button onclick="getLatestNews('Energy')">Energy</button>
+
+            <button>Business</button>
+            <button>Entertainment</button>
+            <button>General</button>
+            <button>Health</button>
+            <button>Science</button>
+            <button>Sports</button>
+            <button>Technology</button>
+
         </div>
       </section>
       <section id="news-board">

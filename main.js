@@ -1,17 +1,29 @@
 const API_KEY = `f51330bd283d46f7b4060f2419d2d67c`;
 let newsList = [];
+const menus = document.querySelectorAll('.menus button');
+menus.forEach(menu => menu.addEventListener("click", (event) => getNewsByCategory(event)));
 
-const getLatestNews = async (category) => {
-    let categoryQuery = category ? `&category=${category}` : '';
-    // const url = new URL(`https://newsapi.org/v2/top-headlines?country=us${categoryQuery}&apiKey=${API_KEY}`);
-    let keyword = '아이유';
-    let PAGE_SIZE = 20;
-    const url = new URL(`https://ddori5338-news.netlify.app/top-headlines?q=${keyword}&country=kr&pageSize=${PAGE_SIZE}`);
+const getNews = async (category, keyword) => {
+    // const url = new URL(`https://newsapi.org/v2/top-headlines?country=us${category ? "&category=" + category : ""}${keyword ? "&q=" + keyword : ""}&apiKey=${API_KEY}`);
+    const url = new URL(`https://ddori5338-news.netlify.app/top-headlines?${category ? "&category=" + category : ""}${keyword ? "&q=" + keyword : ""}`);
     const response = await fetch(url);
     const data = await response.json();
     newsList = data.articles;
     render();
-    console.log('newsList', newsList);
+}
+
+const getLatestNews = async () => {
+    getNews('', '');
+}
+
+const getNewsByCategory = async (event) => {
+    const category = event.target.textContent.toLowerCase();
+    getNews(category, '');
+};
+
+const getNewsByKeyword = async () => {
+    const keyword = document.getElementById("search-input").value;
+    getNews('', keyword);
 }
 
 const openNav = () => {
@@ -31,17 +43,22 @@ const openSearchBox = () => {
     }
 };
 
-const validateImageUrl = (imageUrl) => {
-    const image = new Image();
-    image.src = imageUrl;
-    let res = image.complete || (image.width + image.height) > 0;
-    return res;
-}; 
+// const validateImageUrl = (imageUrl) => {
+//     const image = new Image();
+//     image.src = imageUrl;
+//     let res = image.complete || (image.width + image.height) > 0;
+//     return res;
+// };
+
+const imgError = (image) => {
+	image.onerror = null; // 이미지 에러 핸들러를 중복 호출하지 않도록 이벤트 리스너를 제거합니다.
+	image.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqEWgS0uxxEYJ0PsOb2OgwyWvC0Gjp8NUdPw&usqp=CAU";
+};
 
 const render = () => {
     const newsHTML = newsList.map(news => {
-        let imageUrl = news.urlToImage;
-        imageUrl = validateImageUrl(imageUrl) ? imageUrl : "assets/no_image.jpeg";
+        // let imageUrl = news.urlToImage;
+        // imageUrl = validateImageUrl(imageUrl) ? imageUrl : "assets/no_image.jpeg";
         let description = news.description;
         description = description == null || description == ""
             ? "내용 없음"
@@ -51,7 +68,7 @@ const render = () => {
         const source_name = news.source.name ? news.source.name : "no source";
         return `<div class="row news">
                     <div class="col-lg-4">
-                        <img class="news-img-size" src="${imageUrl}"/>
+                        <img src="${news.urlToImage}" alt="뉴스 이미지" class="news-img-size" onerror="imgError(this)">
                     </div>
                     <div class="col-lg-8">
                         <h2>${news.title}</h2>
