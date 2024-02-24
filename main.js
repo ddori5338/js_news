@@ -8,8 +8,8 @@ const pageSize = 3;
 const groupSize = 5;
 
 const getNews = async (category, keyword) => {
-    const url = new URL(`https://newsapi.org/v2/top-headlines?country=us${category ? "&category=" + category : ""}${keyword ? "&q=" + keyword : ""}&apiKey=${API_KEY}`);
-    // const url = new URL(`https://ddori5338-news.netlify.app/top-headlines?${category ? "&category=" + category : ""}${keyword ? "&q=" + keyword : ""}`);
+    // const url = new URL(`https://newsapi.org/v2/top-headlines?country=us${category ? "&category=" + category : ""}${keyword ? "&q=" + keyword : ""}&apiKey=${API_KEY}`);
+    const url = new URL(`https://ddori5338-news.netlify.app/top-headlines?${category ? "&category=" + category : ""}${keyword ? "&q=" + keyword : ""}`);
     try {
         url.searchParams.set("page", page);  // &page = page
         url.searchParams.set("pageSize", pageSize);
