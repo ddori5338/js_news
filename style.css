@@ -43,6 +43,18 @@
     justify-content: center;
 }
 
+@media screen and (max-width:500px){
+    .news-img-size {
+        min-height: 0;
+    }
+}
+
+@media screen and (max-width:992px){
+    .img-area {
+        margin-bottom: 1em;
+    }
+}
+
 @media screen and (max-width:48rem){
     .menus {
         display: none;

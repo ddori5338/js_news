@@ -122,7 +122,7 @@ const errorRender = (errorMessage) => {
 
 const paginationRender = () => {
     // 주어지는 것, 정하는 것: totalResults, page, pageSize, groupSize
-    // 구해야 할 것: pageGroup, lastPage, firstPage
+    // 구해야 할 것: totalPages, pageGroup, lastPage, firstPage
     const totalPages = Math.ceil(totalResults / pageSize);
     const pageGroup = Math.ceil(page / groupSize);
     let lastPage = Math.min(totalPages, pageGroup * groupSize);
