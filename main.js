@@ -2,12 +2,16 @@ const API_KEY = `f51330bd283d46f7b4060f2419d2d67c`;
 let newsList = [];
 const menus = document.querySelectorAll('.menus button');
 menus.forEach(menu => menu.addEventListener("click", (event) => getNewsByCategory(event)));
+const sideMenus = document.querySelectorAll('.side-menu-list button');
+sideMenus.forEach(menu => menu.addEventListener("click", (event) => getNewsByCategory(event)));
+let category = '';
+let keyword = '';
 let totalResults = 0;
 let page = 1;
 const pageSize = 3;
 const groupSize = 5;
 
-const getNews = async (category, keyword) => {
+const getNews = async () => {
     // const url = new URL(`https://newsapi.org/v2/top-headlines?country=us${category ? "&category=" + category : ""}${keyword ? "&q=" + keyword : ""}&apiKey=${API_KEY}`);
     const url = new URL(`https://ddori5338-news.netlify.app/top-headlines?${category ? "&category=" + category : ""}${keyword ? "&q=" + keyword : ""}`);
     try {
@@ -33,21 +37,27 @@ const getNews = async (category, keyword) => {
 }
 
 const getLatestNews = async () => {
-    getNews('', '');
+    getNews();
 }
 
 const getNewsByCategory = async (event) => {
-    const category = event.target.textContent.toLowerCase();
-    getNews(category, '');
+    closeNav();
+    page = 1;
+    keyword = '';
+    category = event.target.textContent.toLowerCase();
+    getNews();
 };
 
 const getNewsByKeyword = async () => {
-    const keyword = document.getElementById("search-input").value;
-    getNews('', keyword);
+    page = 1;
+    category = '';
+    keyword = document.getElementById("search-input").value;
+    document.getElementById("search-input").value = '';
+    getNews();
 }
 
 const openNav = () => {
-    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("mySidenav").style.width = "200px";
 };
   
 const closeNav = () => {
@@ -71,6 +81,12 @@ const imgError = (image) => {
 
 const render = () => {
     const newsHTML = newsList.map(news => {
+        let title = news.title;
+        title = title == null || title == ""
+            ? "내용 없음"
+            : title.length > 60
+            ? title.substring(0, 60) + "..."
+            : title;
         let description = news.description;
         description = description == null || description == ""
             ? "내용 없음"
@@ -83,7 +99,7 @@ const render = () => {
                         <img src="${news.urlToImage}" alt="뉴스 이미지" class="news-img-size" onerror="imgError(this)">
                     </div>
                     <div class="col-lg-8">
-                        <h2>${news.title}</h2>
+                        <h2>${title}</h2>
                         <p>
                             ${description}
                         </p>

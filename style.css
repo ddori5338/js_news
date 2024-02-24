@@ -1,5 +1,5 @@
 .head-line {
-    margin: 1em;
+    padding: 1em;
     display: flex;
     justify-content: center;
 }
@@ -9,7 +9,6 @@
 }
 
 .menus {
-    margin-top: 1em;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -29,21 +28,27 @@
 
 .news-img-size {
     max-width: 100%;
-    max-height: 250px;
+    max-height: 220px;
+    min-height: 220px;
 }
 
 .news {
-    padding: 0.5em;
+    padding: 0.4em;
     border-bottom: 2px solid black;
 }
 
 .img-area {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media screen and (max-width:48rem){
     .menus {
         display: none;
+    }
+    .head-line {
+        border-bottom: 4px double black;
     }
 }
 
@@ -98,8 +103,8 @@
 }
 
 .search-button {
-    background-color: rgb(86, 123, 149);
-    border: 1px solid rgb(50, 104, 145);
+    background-color: burlywood;
+    border: 1px solid burlywood;
     color: rgb(255, 255, 255);
     height: 33px;
     border-radius: 3px;
@@ -112,4 +117,21 @@
 
 .page-item {
     cursor: pointer;
+}
+
+.page-link {
+    color: #000; 
+    background-color: #fff;
+}
+  
+.page-item.active .page-link {
+    z-index: 1;
+    color: white;
+    background-color: burlywood;
+    border-color: #ccc;
+}
+  
+.page-link:focus, .page-link:hover {
+    color: #000;
+    background-color: #fafafa; 
 }
