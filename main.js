@@ -8,7 +8,7 @@ let category = '';
 let keyword = '';
 let totalResults = 0;
 let page = 1;
-const pageSize = 3;
+const pageSize = 5;
 const groupSize = 5;
 
 const getNews = async () => {
@@ -130,15 +130,15 @@ const paginationRender = () => {
 
     let paginationHTML = ``;
     if (firstPage > 1) {
-        paginationHTML += `<li class="page-item" onclick="moveToPage(${1})"><a class="page-link" aria-label="Previous">&laquo;</a></li>`;
-        paginationHTML += `<li class="page-item" onclick="moveToPage(${page - 1})"><a class="page-link">이전</a></li>`;
+        paginationHTML += `<li class="page-item" onclick="moveToPage(${1})"><a href="#" class="page-link" aria-label="Previous">&laquo;</a></li>`;
+        paginationHTML += `<li class="page-item" onclick="moveToPage(${page - 1})"><a href="#"class="page-link">이전</a></li>`;
     }
     for (let i = firstPage; i <= lastPage; i++) {
-        paginationHTML += `<li class="page-item ${i === page ? 'active' : ''}" onclick="moveToPage(${i})"><a class="page-link">${i}</a></li>`
+        paginationHTML += `<li class="page-item ${i === page ? 'active' : ''}" onclick="moveToPage(${i})"><a href="#" class="page-link">${i}</a></li>`
     }
     if (lastPage < totalPages) {
-        paginationHTML += `<li class="page-item" onclick="moveToPage(${page + 1})"><a class="page-link">다음</a></li>`;
-        paginationHTML += `<li class="page-item" onclick="moveToPage(${totalPages})"><a class="page-link">&raquo;</a></li>`;
+        paginationHTML += `<li class="page-item" onclick="moveToPage(${page + 1})"><a href="#" class="page-link">다음</a></li>`;
+        paginationHTML += `<li class="page-item" onclick="moveToPage(${totalPages})"><a href="#" class="page-link">&raquo;</a></li>`;
     }
 
     document.querySelector(".pagination").innerHTML = paginationHTML;
