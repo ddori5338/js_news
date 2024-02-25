@@ -8,7 +8,7 @@ let category = '';
 let keyword = '';
 let totalResults = 0;
 let page = 1;
-const pageSize = 5;
+const pageSize = 3;
 const groupSize = 5;
 
 const getNews = async () => {
