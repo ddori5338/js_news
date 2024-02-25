@@ -99,12 +99,12 @@ const render = () => {
                         <img src="${news.urlToImage}" alt="뉴스 이미지" class="news-img-size" onerror="imgError(this)">
                     </div>
                     <div class="col-lg-8">
-                        <h2>${title}</h2>
+                        <h2 onclick="window.open('${news.url}')">${title}</h2>
                         <p>
                             ${description}
                         </p>
                         <div>
-                            ${source_name} * ${moment(news.publishedAt).fromNow()}
+                            ${source_name} - ${moment(news.publishedAt).fromNow()}
                         </div>
                     </div>
                 </div>`
