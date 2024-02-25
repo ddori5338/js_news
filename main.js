@@ -129,17 +129,16 @@ const paginationRender = () => {
     let firstPage = (pageGroup - 1) * groupSize + 1;
 
     let paginationHTML = ``;
-
     if (firstPage > 1) {
-        paginationHTML += `<li class="page-item" onclick="moveToPage(${firstPage - 1})"><a class="page-link" aria-label="Previous">&laquo;</a></li>`;
-        paginationHTML += `<li class="page-item" onclick="moveToPage(${page - 1})"><a class="page-link">Prev</a></li>`;
+        paginationHTML += `<li class="page-item" onclick="moveToPage(${1})"><a class="page-link" aria-label="Previous">&laquo;</a></li>`;
+        paginationHTML += `<li class="page-item" onclick="moveToPage(${page - 1})"><a class="page-link">이전</a></li>`;
     }
     for (let i = firstPage; i <= lastPage; i++) {
         paginationHTML += `<li class="page-item ${i === page ? 'active' : ''}" onclick="moveToPage(${i})"><a class="page-link">${i}</a></li>`
     }
     if (lastPage < totalPages) {
-        paginationHTML += `<li class="page-item" onclick="moveToPage(${page + 1})"><a class="page-link">Next</a></li>`;
-        paginationHTML += `<li class="page-item" onclick="moveToPage(${lastPage + 1})"><a class="page-link">&raquo;</a></li>`;
+        paginationHTML += `<li class="page-item" onclick="moveToPage(${page + 1})"><a class="page-link">다음</a></li>`;
+        paginationHTML += `<li class="page-item" onclick="moveToPage(${totalPages})"><a class="page-link">&raquo;</a></li>`;
     }
 
     document.querySelector(".pagination").innerHTML = paginationHTML;
